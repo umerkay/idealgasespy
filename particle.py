@@ -4,8 +4,8 @@ from util import circle
 import vector
 
 class Particle():
-    def __init__(self):
-        self.pos = vector.obj(x = width/2, y = height/2)
+    def __init__(self, pos = (width/2, height/2)):
+        self.pos = vector.obj(x = pos[0], y = pos[1])
         self.vel = vector.obj(x = random.randint(-10,10), y = random.randint(-10,10))
         self.acc = vector.obj(x = 0, y = 0)
 
