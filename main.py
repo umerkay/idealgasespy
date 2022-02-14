@@ -6,7 +6,7 @@ from pygame import gfxdraw
 import pygame
 import sys
 import tkinter as tk
-import os 
+import os
 
 gravity = vector.obj(x = 0, y = 0.5)
 wind = vector.obj(x = 2, y = 0)
