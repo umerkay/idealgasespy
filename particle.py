@@ -14,6 +14,9 @@ class Particle():
         self.mass = self.r
 
     def update(self):
+
+        self.contain()
+
         self.vel += self.acc
         self.pos += self.vel
         self.acc *= 0
@@ -23,3 +26,23 @@ class Particle():
 
     def draw(self, surface):
         circle(surface, int(self.pos.x), int(self.pos.y), self.r, self.color)
+
+    def contain(this):
+        if (this.pos.x + this.vel.x < this.r):
+            this.vel.x *= -1
+            this.pos.x = this.r
+
+        elif (this.pos.x + this.vel.x > width - this.r):
+
+            this.vel.x *= -1
+            this.pos.x = width - this.r
+
+        elif (this.pos.y + this.vel.y < this.r):
+
+            this.vel.y *= -1
+            this.pos.y = this.r
+
+        elif (this.pos.y + this.vel.y > height - this.r):
+
+            this.vel.y *= -1
+            this.pos.y = height - this.r
