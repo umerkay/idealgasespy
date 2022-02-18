@@ -17,11 +17,15 @@ class Particle():
         self.mass = self.r
         self.percRadius = self.r * 10
 
+
     def update(self, peers):
 
         # self.cohesion(peers)
         self.repulsion(peers)
 
+        self.contain()
+
+        self.cohesion(peers)
         self.vel = self.vel.unit().scale(Options["temperature"]/100)
 
         # dont change
@@ -34,6 +38,26 @@ class Particle():
 
     def draw(self, surface):
         circle(surface, int(self.pos.x), int(self.pos.y), self.r, self.color)
+
+    def contain(this):
+        if (this.pos.x + this.vel.x < this.r):
+            this.vel.x *= -1
+            this.pos.x = this.r
+
+        elif (this.pos.x + this.vel.x > width - this.r):
+
+            this.vel.x *= -1
+            this.pos.x = width - this.r
+
+        elif (this.pos.y + this.vel.y < this.r):
+
+            this.vel.y *= -1
+            this.pos.y = this.r
+
+        elif (this.pos.y + this.vel.y > height - this.r):
+
+            this.vel.y *= -1
+            this.pos.y = height - this.r
         # circle(surface, int(self.pos.x), int(self.pos.y), self.percRadius, self.color)
     # for i in particle:
     #     pears1=[]
