@@ -1,5 +1,5 @@
 from lib2to3.pgen2.token import OP
-import vector
+from vector import Vector
 from particle import Particle
 from util import clear
 from vars import Options, width, height
@@ -9,8 +9,8 @@ import sys
 import tkinter as tk
 import os
 
-gravity = vector.obj(x = 0, y = 0.5)
-wind = vector.obj(x = 2, y = 0)
+# gravity = vector.obj(x = 0, y = 0.5)
+# wind = vector.obj(x = 2, y = 0)
 
 mouse = {"x": 0, "y": 0, "ax": 0, "ay": 0}
 #create 100 particles
@@ -19,7 +19,7 @@ particles = []
 
 def reset():
     particles.clear()
-    particles.extend([Particle() for x in range(50)])
+    particles.extend([Particle() for x in range(150)])
 
 def loop(surface):
     #clear canvas
@@ -136,7 +136,7 @@ def main():
         ###
 
         #run at 30fps
-        clock.tick(600)
+        clock.tick(60)
 
         #clear canvas
         loop(surface)
