@@ -18,16 +18,16 @@ particles = []
 
 def reset():
     particles.clear()
-    particles.extend([Particle() for x in range(150)])
+    particles.extend([Particle() for x in range(50)])
 
 def loop(surface):
     #clear canvas
     clear(surface)
 
     for particle in particles:
-        particle.applyForce(gravity)
+        # particle.applyForce(gravity)
         # particle.applyForce(wind)
-        particle.update()
+        particle.update(particles)
         particle.draw(surface)
 
 def mouseClicked():
@@ -73,7 +73,7 @@ def main():
         ###
 
         #run at 30fps
-        clock.tick(30)
+        clock.tick(600)
 
         #clear canvas
         loop(surface)
