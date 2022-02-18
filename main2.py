@@ -6,7 +6,7 @@ from pygame import gfxdraw
 import pygame
 import sys
 import tkinter as tk
-import os
+import os 
 
 gravity = vector.obj(x = 0, y = 0.5)
 wind = vector.obj(x = 2, y = 0)
@@ -18,16 +18,16 @@ particles = []
 
 def reset():
     particles.clear()
-    particles.extend([Particle() for x in range(50)])
+    particles.extend([Particle() for x in range(150)])
 
 def loop(surface):
     #clear canvas
     clear(surface)
 
     for particle in particles:
-        # particle.applyForce(gravity)
+        particle.applyForce(gravity)
         # particle.applyForce(wind)
-        particle.update(particles)
+        particle.update()
         particle.draw(surface)
 
 def mouseClicked():
@@ -134,7 +134,7 @@ def main():
         ###
 
         #run at 30fps
-        clock.tick(600)
+        clock.tick(30)
 
         #clear canvas
         loop(surface)
