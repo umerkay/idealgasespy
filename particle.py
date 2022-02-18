@@ -1,3 +1,4 @@
+from vars import Options
 from vars import width, height
 import random
 from util import circle
@@ -7,8 +8,8 @@ class Particle():
     def __init__(self, pos = (width/2, height/2)):
         self.pos = vector.obj(x = random.randint(0, width), y = random.randint(0, height))
         # self.pos = vector.obj(x = pos[0], y = pos[1])
-        self.vel = vector.obj(x = 0, y = 0)
-        # self.vel = vector.obj(x = random.randint(-10,10), y = random.randint(-10,10))
+        # self.vel = vector.obj(x = 0, y = 0)
+        self.vel = vector.obj(x = random.randint(-10,10), y = random.randint(-10,10))
         self.acc = vector.obj(x = 0, y = 0)
 
         self.color = (255,255,255)
@@ -18,7 +19,10 @@ class Particle():
 
     def update(self, peers):
 
-        self.cohesion(peers)
+        # self.cohesion(peers)
+        self.repulsion(peers)
+
+        self.vel = self.vel.unit().scale(Options["temperature"]/100)
 
         # dont change
         self.vel += self.acc
@@ -66,7 +70,20 @@ class Particle():
             sum=sum/(count**10)
             # self.applyforce(sum)
             self.acc += sum.scale(1/self.mass)
-    # def collision():
+
+    def repulsion(self, peers):
+        sum=vector.obj(x=0,y=0)
+        count=0
+        for peer in peers:
+            if peer!=self and distSq(self.pos, peer.pos) < self.r ** 2:
+                diff=vector.obj(x = 0, y = 0)
+                diff=self.pos-peer.pos
+                sum+=diff
+                count+=1
+        if count>0:
+            sum=sum/(count**10)
+            # self.applyforce(sum)
+            self.acc += sum.scale(1/self.mass)
 
 def distSq(pos1, pos2):
     return (pos1.x - pos2.x) ** 2 + (pos1.y - pos2.y) ** 2

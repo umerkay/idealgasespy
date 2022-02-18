@@ -1,7 +1,8 @@
+from lib2to3.pgen2.token import OP
 import vector
 from particle import Particle
 from util import clear
-from vars import width, height
+from vars import Options, width, height
 from pygame import gfxdraw
 import pygame
 import sys
@@ -80,8 +81,9 @@ root.geometry("400x400")
 def slide():
     my_Label = tk.Label (root, text = horizontal.get()).pack()
     root.geometry (str(horizontal.get())+"x400")
-my_btn = tk.Button (root, text="Intermolecularforces" , command = slide).pack()
-horizontal = tk.Scale(root, from_ = 0 , to = 200 , orient=tk.HORIZONTAL ) 
+my_btn = tk.Button (root, text="Temperature (K)" , command = slide).pack()
+horizontal = tk.Scale(root, from_ = 0 , to = 2000 , orient=tk.HORIZONTAL ) 
+horizontal.set(Options["temperature"])
 horizontal.pack()
 
 def slide_1():
