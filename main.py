@@ -1,15 +1,16 @@
-import vector
+from lib2to3.pgen2.token import OP
+from vector import Vector
 from particle import Particle
 from util import clear
-from vars import width, height
+from vars import Options, width, height
 from pygame import gfxdraw
 import pygame
 import sys
 import tkinter as tk
 import os
 
-gravity = vector.obj(x = 0, y = 0.5)
-wind = vector.obj(x = 2, y = 0)
+# gravity = vector.obj(x = 0, y = 0.5)
+# wind = vector.obj(x = 2, y = 0)
 
 mouse = {"x": 0, "y": 0, "ax": 0, "ay": 0}
 #create 100 particles
@@ -18,7 +19,7 @@ particles = []
 
 def reset():
     particles.clear()
-    particles.extend([Particle() for x in range(50)])
+    particles.extend([Particle() for x in range(150)])
 
 def loop(surface):
     #clear canvas
@@ -79,8 +80,9 @@ root.geometry("400x400")
 def slide():
     my_Label = tk.Label (root, text = horizontal.get()).pack()
     root.geometry (str(horizontal.get())+"x400")
-my_btn = tk.Button (root, text="Intermolecularforces" , command = slide).pack()
-horizontal = tk.Scale(root, from_ = 0 , to = 200 , orient=tk.HORIZONTAL ) 
+my_btn = tk.Button (root, text="Temperature (K)" , command = slide).pack()
+horizontal = tk.Scale(root, from_ = 0 , to = 2000 , orient=tk.HORIZONTAL ) 
+horizontal.set(Options["temperature"])
 horizontal.pack()
 
 def slide_1():
@@ -133,7 +135,7 @@ def main():
         ###
 
         #run at 30fps
-        clock.tick(600)
+        clock.tick(60)
 
         #clear canvas
         loop(surface)
