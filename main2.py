@@ -50,7 +50,7 @@ os.environ['SDL_VIDEODRIVER'] = 'windib'
 button1 = tk.Button(buttonwin,text = 'Reset', command=reset)
 button1.pack(side="left")
 
-# will do further changes tomorrow!
+
 # checkboxes
 
 checkVar1 = tk.IntVar()
